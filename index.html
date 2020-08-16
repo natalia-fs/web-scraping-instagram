@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Bot</title>
+</head>
+<body>
+    <style>
+
+        body{
+            background-color: #111;
+        }
+        h1 {
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        .container{
+            align-items: center;
+            text-align: center;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+        }
+        li {
+            list-style: none;
+        }
+        li img {
+            width: auto;
+            height: 85%;
+            border-radius: 2rem;
+
+            object-fit: cover;
+            border: 1px solid white;
+            box-shadow: 0 0 90px 0 rgba(0, 0, 0, 1);
+        }
+        img[data-src]{
+            opacity: 0;
+            transform: scale(0);
+        }
+        img[src]{
+            opacity: 1;
+            transform: scale(1);
+            transition: .3s ease-in-out;
+        }
+        
+    </style>
+    <h1>Últimas fotos (Instagram)</h1>
+    <div class="container"></div>
+
+    <script>
+        (async() =>{
+            const response = await fetch('./instagram.json');
+            const data = await response.json();
+
+            const htmlList = data.map( ({src}) => `<li><img data-src="${src}"></li>`).join('');
+            document.querySelector('.container').innerHTML = htmlList;
+            
+            const firstImg = document.querySelector('img');
+            console.log(firstImg);
+            firstImg.src = firstImg.getAttribute('data-src');
+            console.log(firstImg);
+        })();
+        
+        function activeScroll(){
+            document.querySelectorAll('img').forEach((img, index) => {
+                if(img.getBoundingClientRect().top < window.innerHeight){
+                    img.src = img.getAttribute('data-src');
+                }
+            });
+        }
+        window.addEventListener('scroll', activeScroll);
+    </script>
+    
+</body>
+</html>
