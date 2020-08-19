@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Scraping</title>
+    <title>Instabot Lazy Load</title>
 </head>
 <body>
     <style>
@@ -28,7 +28,7 @@
             margin: 0 auto;
             padding: 2px;
             border-radius: 50%;
-            border: 2px solid #bc153b;
+            border: 2px dashed #bc153b;
             color: #bc153b;
             font-size: .9rem;
             margin-bottom: 1rem;
@@ -62,20 +62,19 @@
             border: 1px solid white;
             box-shadow: 0 0 90px 0 rgba(0, 0, 0, 1);
         }
-        img[data-src]{
+        .container img[data-src]{
             opacity: 0;
             transform: scale(0);
         }
-        img[src]{
+        .container img[src]{
             opacity: 1;
             transform: scale(1);
             transition: .3s ease-in-out;
         }
         
     </style>
-    <h1>Últimas fotos (Instagram)</h1>
     <a href="./stories.html" class="stories">
-        <img src="" alt="">
+        <img src="./stories.png" data-src="./stories.png" alt="">
     </a>
     <div class="container"></div>
 
@@ -89,8 +88,6 @@
             
             const firstImg = document.querySelector('.container img');
             firstImg.src = firstImg.getAttribute('data-src');
-            const stories = document.querySelector('.stories img');
-            stories.src = firstImg.src;
         })();
         
         function activeScroll(){
