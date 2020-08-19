@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <a href="./index.html" class="stories">
+        Voltar ao feed
+    </a>
+    <div data-slide="slide" class="slide">
+        <div class="slide-items">
+            <!-- Exibindo apenas as primeiras 10 imagens -->
+            <img src="">
+            <img src="">
+            <img src="">
+            <img src="">
+            <img src="">
+            <img src="">
+            <img src="">
+            <img src="">
+            <img src="">
+            <img src="">
+        </div>
+        <nav class="slide-nav">
+            <div class="slide-thumb"></div>
+            <button class="slide-prev">Anterior</button>
+            <button class="slide-next">Próximo</button>
+        </nav>
+
+    </div>
+    
+    <script src="./slide-stories.js"></script>
+    <script>
+        (async() =>{
+            const response = await fetch('./instagram.json');
+            const data = await response.json();
+            const htmlList = data.map(({src}) => src);          
+            // document.querySelector('.slide-items').innerHTML = htmlList;
+            const imgs = Array.from(document.querySelectorAll('.slide-items > img'))
+            imgs.forEach((img, key) => {
+                img.src = htmlList[key];
+            })
+        })();
+        
+    </script>
+</body>
+</html>
