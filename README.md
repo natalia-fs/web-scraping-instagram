@@ -14,4 +14,4 @@
 * Acessar a pasta raiz e instalar as dependências com `npm install`
 * Executar o comando `npx lite-server`
 
-### O repo possui um json com 12 links de fotos, caso você só queira testar as páginas, porém se quiser extrair novas fotos, basta acessar a pasta raiz e executar o comando `node index.js` e inserir o @ da página pública que você quiser.
+O repo possui um json com 12 links de fotos, caso você só queira testar as páginas, porém se quiser extrair novas fotos, basta acessar a pasta raiz e executar o comando `node index.js` e inserir o @ da página pública que você quiser.
